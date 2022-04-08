@@ -42,6 +42,26 @@ public class Usuario {
 	private List<Postagem>postagem;
 	
 	
+	//Métodos contrutores para testes
+	//construtor cheio
+		public Usuario(Long id, String nome, String usuario, String senha, String foto) {
+			
+	//Abaixo colocar na mesma ordem que está em cima
+			this.id=id;
+			this.nome=nome;
+			this.usuario=usuario;
+			this.senha=senha;
+			this.foto=foto;
+		}
+	
+	//constutor vazio
+	//aqui pode instanciar um por vez, (ex: usuario) apenas
+		public Usuario() {}
+		
+		
+		
+		
+		
 	public Long getId() {
 		return id;
 	}

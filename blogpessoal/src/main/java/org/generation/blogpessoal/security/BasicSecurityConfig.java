@@ -15,7 +15,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-@EnableWebSecurity //habilitar nossa anotação
+@EnableWebSecurity //------ habilitar nossa anotação
 
 public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
 

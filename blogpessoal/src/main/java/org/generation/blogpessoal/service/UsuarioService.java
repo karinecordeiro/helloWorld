@@ -9,10 +9,11 @@ import org.generation.blogpessoal.repository.UsuarioRepository;
 
 import java.util.Optional;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 
@@ -38,6 +39,24 @@ public class UsuarioService {
 		return Optional.of(usuarioRepository.save(usuario));
 		
 		}
+	
+	
+	public Optional<Usuario> atualizarUsuario(Usuario usuario) {
+		
+		
+		if(usuarioRepository.findById(usuario.getId()).isPresent()) 
+		{
+			Optional<Usuario> buscaUsuario = usuarioRepository.findByUsuario(usuario.getUsuario());
+			if((buscaUsuario.isPresent()) && (buscaUsuario.get().getId() !=usuario.getId()))
+				throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Usuário já existe!", null);
+			
+			usuario.setSenha(criptografarSenha(usuario.getSenha()));
+			return Optional.ofNullable(usuarioRepository.save(usuario));
+		}
+		
+			return Optional.empty();
+			
+	}
 		
 		public Optional<UsuarioLogin> autenticarUsuario(Optional<UsuarioLogin> usuarioLogin){
 			
